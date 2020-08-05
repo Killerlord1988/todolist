@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" href="css/normalize.css" as="style">
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="fonts/SF-Pro-Display-Regular.woff2" as="font">
+  <link rel="preload" href="fonts/SF-Pro-Display-Bold.woff2" as="font">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+  <title>TODO list</title>
+</head>
+<body>
+  <ul class="todo-list">
+    <li class="todo-list-item">
+      <label>
+        <input type="checkbox" class="todo-list-input">
+        <span>Создайть задачи</span>
+    </label>
+    </li>
+  </ul>
+  <p class="empty-tasks hidden">Все задачи выполнены. Новых задач нет.</p>
+  <form class="add-form" action="index.html" method="POST">
+    <input class="add-form-input" type="input" placeholder="Напиши задачу, например: «Cвалить с рашки»" required>
+    <button class="add-form-button" type="submit">Добавить задачу</button>
+  </form>
+
+  <template id="task-template">
+    <li class="todo-list-item">
+      <label>
+        <input type="checkbox" class="todo-list-input">
+        <span></span>
+      </label>
+    </li>
+  </template>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
