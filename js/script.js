@@ -8,7 +8,7 @@
   const taskTemplate = document.querySelector('#task-template').content;
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
 
-  function toggleEmptyMessage () {
+  function toggleEmptyMessage() {
     if (items.length === 0) {
       emptyListMessage.classList.remove('hidden');
     } else {
@@ -16,10 +16,23 @@
     }
   };
 
-  function addCheckHandler (item) {
+  function toggleClassCompleted() {
+    let tasks = document.querySelectorAll('.todo-list-item');
+    for (let task of tasks) {
+      if (task.classList.contains('completed')) {
+        task.classList.remove('completed');
+      } else {
+        task.classList.add('completed')
+      }
+    }
+    // task.classList.toggle('completed')
+  }
+
+  function addCheckHandler(item) {
     var checkbox = item.querySelector('.todo-list-input');
     checkbox.addEventListener('change', function () {
       toggleEmptyMessage();
+      toggleClassCompleted();
     });
   };
 
@@ -36,7 +49,7 @@
     taskDescription.textContent = taskText;
     addCheckHandler(task);
     list.appendChild(task);
-    toggleEmptyMessage ();
+    toggleEmptyMessage();
     newItemTitle.value = '';
   });
 })();
