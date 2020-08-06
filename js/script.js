@@ -19,7 +19,6 @@
   function addCheckHandler (item) {
     var checkbox = item.querySelector('.todo-list-input');
     checkbox.addEventListener('change', function () {
-      item.remove();
       toggleEmptyMessage();
     });
   };

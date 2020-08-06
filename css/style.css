@@ -113,10 +113,19 @@ a {
 }
 
 .todo-list-input:checked + span::before {
-  background-color: #69b253;
+  background-color: #d9d9d9;
   background-image: url("../img/check-white.svg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.completed span {
+  color: #d9d9d9;
+  text-decoration: line-through; 
+}
+
+.completed span::before {
+  border-color: #d9d9d9;
 }
 
 .add-form {
