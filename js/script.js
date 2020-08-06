@@ -7,6 +7,8 @@
   const newItemTitle = newItemForm.querySelector('.add-form-input');
   const taskTemplate = document.querySelector('#task-template').content;
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
+  const removeButton = document.querySelector('.todo-list-remove');
+  let isActive = false;
 
   function toggleEmptyMessage() {
     if (items.length === 0) {
@@ -16,29 +18,36 @@
     }
   };
 
-  function toggleClassCompleted() {
-    let tasks = document.querySelectorAll('.todo-list-item');
-    for (let task of tasks) {
-      if (task.classList.contains('completed')) {
-        task.classList.remove('completed');
-      } else {
-        task.classList.add('completed')
-      }
+  var removeButtons = document.querySelectorAll('.todo-list-remove');
+  console.log(removeButtons);
+  function removeCheckHandler() {
+    for (let i = 0; i < removeButtons.length; i++) {
+      tasks[i].remove(tasks[i]);
     }
-    // task.classList.toggle('completed')
   }
 
-  function addCheckHandler(item) {
-    var checkbox = item.querySelector('.todo-list-input');
-    checkbox.addEventListener('change', function () {
-      toggleEmptyMessage();
-      toggleClassCompleted();
-    });
+  Object.keys(removeButtons).forEach(function (el) {
+    removeButtons[el].addEventListener('click', removeCheckHandler);
+  });
+
+  var checkboxs = document.querySelectorAll('.todo-list-input');
+  var tasks = document.querySelectorAll('.todo-list-item');
+
+  function toggleClassCompleted() {
+    for (let i = 0; i < tasks.length; i++) {
+      for (let i = 0; i < checkboxs.length; i++) {
+        if (checkboxs[i].checked) {
+          tasks[i].classList.add('completed')
+        } else {
+          tasks[i].classList.remove('completed')
+        }
+      };
+    };
   };
-
-  for (let item of items) {
-    addCheckHandler(item);
-  }
+  
+  Object.keys(tasks).forEach(function (el) {
+    tasks[el].addEventListener('change', toggleClassCompleted);
+  });
 
   newItemForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
@@ -47,9 +56,8 @@
     const task = newItemTemplate.cloneNode(true);
     const taskDescription = task.querySelector('span');
     taskDescription.textContent = taskText;
-    addCheckHandler(task);
+    // addCheckHandler(task);
     list.appendChild(task);
-    toggleEmptyMessage();
     newItemTitle.value = '';
   });
 })();
