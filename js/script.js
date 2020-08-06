@@ -24,7 +24,7 @@
     for (let i = 0; i < removeButtons.length; i++) {
       tasks[i].remove(tasks[i]);
     }
-  }
+  };
 
   Object.keys(removeButtons).forEach(function (el) {
     removeButtons[el].addEventListener('click', removeCheckHandler);
