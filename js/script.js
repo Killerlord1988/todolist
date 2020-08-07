@@ -20,16 +20,15 @@
     }
   };
   
-  var removeButtons = document.querySelectorAll('.todo-list-remove');
-  function removingTaskOnButton() {
-    for (let i = 0; i < removeButtons.length; i++) {
-      removeButtons[i].addEventListener('click', function () {
-        items[i].remove();
-      });
-    }
+  function removingTaskOnButton(item) {
+    var removeButton = item.querySelector('.todo-list-remove');
+    removeButton.addEventListener('click', function () {
+      item.remove();
+    });
   }
-  removingTaskOnButton();
-
+  for (let i = 0; i < items.length; i++) {
+    removingTaskOnButton(items[i]);
+  }
 
   var checkboxs = document.querySelectorAll('.todo-list-input');
   var tasks = document.querySelectorAll('.todo-list-item');
@@ -57,9 +56,8 @@
     const task = newItemTemplate.cloneNode(true);
     const taskDescription = task.querySelector('span');
     taskDescription.textContent = taskText;
-    console.log(task);
     list.appendChild(task);
-    newItemTitle.value = '';
     console.log(list);
+    newItemTitle.value = '';
   });
 })();
