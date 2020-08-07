@@ -24,6 +24,7 @@
     var removeButton = item.querySelector('.todo-list-remove');
     removeButton.addEventListener('click', function () {
       item.remove();
+      toggleEmptyMessage();
     });
   }
   for (let i = 0; i < items.length; i++) {
@@ -62,5 +63,6 @@
     newItemTitle.value = '';
     removingTaskOnButton(task);
     // toggleClassCompleted(task);
+    toggleEmptyMessage();
   });
 })();
