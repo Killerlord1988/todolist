@@ -20,15 +20,11 @@
 
   var removeButtons = document.querySelectorAll('.todo-list-remove');
   console.log(removeButtons);
-  function removeCheckHandler() {
-    for (let i = 0; i < removeButtons.length; i++) {
-      tasks[i].remove(tasks[i]);
-    }
-  };
-
-  Object.keys(removeButtons).forEach(function (el) {
-    removeButtons[el].addEventListener('click', removeCheckHandler);
-  });
+  for (let i = 0; i < removeButtons.length; i++) {
+    removeButtons[i].addEventListener('click', function () {
+      tasks[i].remove();
+    });
+  }
 
   var checkboxs = document.querySelectorAll('.todo-list-input');
   var tasks = document.querySelectorAll('.todo-list-item');
