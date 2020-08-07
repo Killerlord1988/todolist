@@ -2,6 +2,8 @@
 (function () {
   const list = document.querySelector('.todo-list');
   const items = list.children;
+  
+  console.log(list);
   const emptyListMessage = document.querySelector('.empty-tasks');
   const newItemForm = document.querySelector('.add-form');
   const newItemTitle = newItemForm.querySelector('.add-form-input');
@@ -17,36 +19,35 @@
       emptyListMessage.classList.add('hidden');
     }
   };
-
+  
   var removeButtons = document.querySelectorAll('.todo-list-remove');
-  console.log(removeButtons);
-  function removeCheckHandler() {
+  function removingTaskOnButton() {
     for (let i = 0; i < removeButtons.length; i++) {
-      tasks[i].remove(tasks[i]);
+      removeButtons[i].addEventListener('click', function () {
+        items[i].remove();
+      });
     }
-  };
+  }
+  removingTaskOnButton();
 
-  Object.keys(removeButtons).forEach(function (el) {
-    removeButtons[el].addEventListener('click', removeCheckHandler);
-  });
 
   var checkboxs = document.querySelectorAll('.todo-list-input');
   var tasks = document.querySelectorAll('.todo-list-item');
 
+  console.log(items.length);
   function toggleClassCompleted() {
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       for (let i = 0; i < checkboxs.length; i++) {
         if (checkboxs[i].checked) {
-          tasks[i].classList.add('completed')
+          items[i].classList.add('completed')
         } else {
-          tasks[i].classList.remove('completed')
+          items[i].classList.remove('completed')
         }
       };
     };
   };
-  
-  Object.keys(tasks).forEach(function (el) {
-    tasks[el].addEventListener('change', toggleClassCompleted);
+  Object.keys(items).forEach(function (el) {
+    items[el].addEventListener('change', toggleClassCompleted);
   });
 
   newItemForm.addEventListener('submit', function (evt) {
@@ -56,8 +57,9 @@
     const task = newItemTemplate.cloneNode(true);
     const taskDescription = task.querySelector('span');
     taskDescription.textContent = taskText;
-    // addCheckHandler(task);
+    console.log(task);
     list.appendChild(task);
     newItemTitle.value = '';
+    console.log(list);
   });
 })();
