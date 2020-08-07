@@ -1,8 +1,8 @@
 'use strict';
 (function () {
-  const list = document.querySelector('.todo-list');
-  const items = list.children;
-  
+  var list = document.querySelector('.todo-list');
+  var items = list.children;
+
   console.log(list);
   const emptyListMessage = document.querySelector('.empty-tasks');
   const newItemForm = document.querySelector('.add-form');
@@ -19,7 +19,7 @@
       emptyListMessage.classList.add('hidden');
     }
   };
-  
+
   function removingTaskOnButton(item) {
     var removeButton = item.querySelector('.todo-list-remove');
     removeButton.addEventListener('click', function () {
@@ -34,6 +34,7 @@
   var tasks = document.querySelectorAll('.todo-list-item');
 
   console.log(items.length);
+
   function toggleClassCompleted() {
     for (let i = 0; i < items.length; i++) {
       for (let i = 0; i < checkboxs.length; i++) {
@@ -59,5 +60,7 @@
     list.appendChild(task);
     console.log(list);
     newItemTitle.value = '';
+    removingTaskOnButton(task);
+    // toggleClassCompleted(task);
   });
 })();
