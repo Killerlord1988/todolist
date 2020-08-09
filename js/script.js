@@ -1,16 +1,13 @@
 'use strict';
 (function () {
-  var list = document.querySelector('.todo-list');
-  var items = list.children;
-
-  console.log(list);
+  const list = document.querySelector('.todo-list');
+  const items = list.children;
   const emptyListMessage = document.querySelector('.empty-tasks');
   const newItemForm = document.querySelector('.add-form');
   const newItemTitle = newItemForm.querySelector('.add-form-input');
   const taskTemplate = document.querySelector('#task-template').content;
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
-  const removeButton = document.querySelector('.todo-list-remove');
-  let isActive = false;
+  let checkboxs = document.querySelectorAll('.todo-list-input');
 
   function toggleEmptyMessage() {
     if (items.length === 0) {
@@ -21,34 +18,29 @@
   };
 
   function removingTaskOnButton(item) {
-    var removeButton = item.querySelector('.todo-list-remove');
+    const removeButton = item.querySelector('.todo-list-remove');
     removeButton.addEventListener('click', function () {
       item.remove();
       toggleEmptyMessage();
     });
   }
-  for (let i = 0; i < items.length; i++) {
-    removingTaskOnButton(items[i]);
-  }
 
-  var checkboxs = document.querySelectorAll('.todo-list-input');
-  var tasks = document.querySelectorAll('.todo-list-item');
-
-  console.log(items.length);
-
-  function toggleClassCompleted() {
-    for (let i = 0; i < items.length; i++) {
-      for (let i = 0; i < checkboxs.length; i++) {
-        if (checkboxs[i].checked) {
-          items[i].classList.add('completed')
-        } else {
-          items[i].classList.remove('completed')
-        }
-      };
-    };
-  };
   Object.keys(items).forEach(function (el) {
-    items[el].addEventListener('change', toggleClassCompleted);
+    removingTaskOnButton(items[el]);
+  });
+  
+  function toggleClassCompleted() {
+    Object.keys(checkboxs).forEach(function (el) {
+        if (checkboxs[el].checked) {
+          items[el].classList.add('completed')
+        } else {
+          items[el].classList.remove('completed')
+        }
+    });
+  };
+
+  list.addEventListener('change', function(evt) {
+    if (evt.target.className != items) toggleClassCompleted();
   });
 
   newItemForm.addEventListener('submit', function (evt) {
@@ -59,10 +51,9 @@
     const taskDescription = task.querySelector('span');
     taskDescription.textContent = taskText;
     list.appendChild(task);
-    console.log(list);
     newItemTitle.value = '';
     removingTaskOnButton(task);
-    // toggleClassCompleted(task);
     toggleEmptyMessage();
+    checkboxs = document.querySelectorAll('.todo-list-input');
   });
 })();
