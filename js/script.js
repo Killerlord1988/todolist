@@ -30,21 +30,23 @@
   }
 
   var checkboxs = document.querySelectorAll('.todo-list-input');
-
   function toggleClassCompleted() {
-    for (let i = 0; i < items.length; i++) {
       for (let i = 0; i < checkboxs.length; i++) {
         if (checkboxs[i].checked) {
           items[i].classList.add('completed')
         } else {
           items[i].classList.remove('completed')
         }
-      };
     };
   };
-  Object.keys(items).forEach(function (el) {
-    items[el].addEventListener('change', toggleClassCompleted);
+
+  list.addEventListener('change', function(evt) {
+    if (evt.target.className != items) toggleClassCompleted();
   });
+
+  // Object.keys(items).forEach(function (el) {
+  //   items[el].addEventListener('change', toggleClassCompleted);
+  // });
 
   newItemForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
