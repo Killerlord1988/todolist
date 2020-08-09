@@ -9,8 +9,6 @@
   const newItemTitle = newItemForm.querySelector('.add-form-input');
   const taskTemplate = document.querySelector('#task-template').content;
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
-  const removeButton = document.querySelector('.todo-list-remove');
-  let isActive = false;
 
   function toggleEmptyMessage() {
     if (items.length === 0) {
@@ -32,9 +30,6 @@
   }
 
   var checkboxs = document.querySelectorAll('.todo-list-input');
-  var tasks = document.querySelectorAll('.todo-list-item');
-
-  console.log(items.length);
 
   function toggleClassCompleted() {
     for (let i = 0; i < items.length; i++) {
@@ -62,7 +57,6 @@
     console.log(list);
     newItemTitle.value = '';
     removingTaskOnButton(task);
-    // toggleClassCompleted(task);
     toggleEmptyMessage();
   });
 })();
