@@ -60,5 +60,6 @@
     newItemTitle.value = '';
     removingTaskOnButton(task);
     toggleEmptyMessage();
+    checkboxs = document.querySelectorAll('.todo-list-input');
   });
 })();
