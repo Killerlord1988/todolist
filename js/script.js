@@ -9,6 +9,11 @@
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
   let checkboxs = document.querySelectorAll('.todo-list-input');
 
+  function updateCheckboxsCollection() {
+    checkboxs = document.querySelectorAll('.todo-list-input');
+    console.log(checkboxs);
+  }
+
   function toggleEmptyMessage() {
     if (items.length === 0) {
       emptyListMessage.classList.remove('hidden');
@@ -22,6 +27,7 @@
     removeButton.addEventListener('click', function () {
       item.remove();
       toggleEmptyMessage();
+      updateCheckboxsCollection();
     });
   }
 
@@ -54,6 +60,6 @@
     newItemTitle.value = '';
     removingTaskOnButton(task);
     toggleEmptyMessage();
-    checkboxs = document.querySelectorAll('.todo-list-input');
+    updateCheckboxsCollection();
   });
 })();
