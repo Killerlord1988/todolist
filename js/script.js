@@ -11,7 +11,6 @@
 
   function updateCheckboxsCollection() {
     checkboxs = document.querySelectorAll('.todo-list-input');
-    console.log(checkboxs);
   }
 
   function toggleEmptyMessage() {
