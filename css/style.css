@@ -41,6 +41,10 @@ a {
   text-decoration: none;
 }
 
+.title {
+  line-height: 40px;
+}
+
 .visually-hidden,
 .todo-list-input {
   position: absolute;
