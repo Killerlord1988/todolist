@@ -7,7 +7,19 @@
   const newItemTitle = newItemForm.querySelector('.add-form-input');
   const taskTemplate = document.querySelector('#task-template').content;
   const newItemTemplate = taskTemplate.querySelector('.todo-list-item');
+  const counter = document.querySelector('.counter');
+  const counterAllTask = counter.querySelector('.counter-all span');
+  const counterCompletedTask = counter.querySelector('.counter-completed span');
+  const counterWaitTask = counter.querySelector('.counter-wait span');
   let checkboxs = document.querySelectorAll('.todo-list-input');
+
+  function counterUpdate() {
+    let totalTask = counterAllTask.textContent = items.length
+    let completedTask = counterCompletedTask.textContent = toggleClassCompleted()
+    counterWaitTask.textContent = totalTask - completedTask
+  }
+
+  counterUpdate()
 
   function updateCheckboxsCollection() {
     checkboxs = document.querySelectorAll('.todo-list-input');
@@ -27,6 +39,7 @@
       item.remove();
       toggleEmptyMessage();
       updateCheckboxsCollection();
+      counterUpdate();
     });
   }
 
@@ -34,18 +47,25 @@
     removingTaskOnButton(items[el]);
   });
   
+  
   function toggleClassCompleted() {
+    let countCompleted = 0
     Object.keys(checkboxs).forEach(function (el) {
         if (checkboxs[el].checked) {
           items[el].classList.add('completed')
+          countCompleted++
         } else {
           items[el].classList.remove('completed')
         }
-    });
-  };
+      });
+      return countCompleted
+    };
+
+  toggleClassCompleted()
 
   list.addEventListener('change', function(evt) {
     if (evt.target.className != items) toggleClassCompleted();
+    counterUpdate()
   });
 
   newItemForm.addEventListener('submit', function (evt) {
@@ -60,5 +80,6 @@
     removingTaskOnButton(task);
     toggleEmptyMessage();
     updateCheckboxsCollection();
+    counterUpdate();
   });
 })();

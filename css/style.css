@@ -177,6 +177,7 @@ a {
 
 .add-form {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .add-form-input {
@@ -206,5 +207,12 @@ a {
 
   user-select: none;
 
+}
+
+.counter {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  font-size: 1em;
 }
 
