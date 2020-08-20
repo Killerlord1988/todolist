@@ -23,6 +23,7 @@
     })
   }
   renderTask()
+  toggleEmptyMessage()
   
   let checkboxs = document.querySelectorAll('.todo-list-input');
 
@@ -59,7 +60,6 @@
       emptyListMessage.classList.add('hidden');
     }
   }
-  toggleEmptyMessage()
 
   function removingTaskOnButton(item) {
     const removeButton = item.querySelector('.todo-list-remove');
