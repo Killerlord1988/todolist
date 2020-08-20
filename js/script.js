@@ -13,17 +13,19 @@
   const counterWaitTask = counter.querySelector('.counter-wait span');
   
   function renderTask() {
-    const raw = localStorage.getItem('tasks')
-    const tasksArr = JSON.parse(raw)
-    tasksArr.forEach(el =>{
-      const task = newItemTemplate.cloneNode(true);
-      const taskDescription = task.querySelector('span');
-      taskDescription.textContent = el;
-      list.appendChild(task);
-    })
+    if (localStorage.getItem("tasks") !== null) {
+      console.log('sds');
+      const raw = localStorage.getItem('tasks')
+      const tasksArr = JSON.parse(raw)
+      tasksArr.forEach(el =>{
+        const task = newItemTemplate.cloneNode(true);
+        const taskDescription = task.querySelector('span');
+        taskDescription.textContent = el;
+        list.appendChild(task);
+      })
+    }
   }
   renderTask()
-  toggleEmptyMessage()
   
   let checkboxs = document.querySelectorAll('.todo-list-input');
 
@@ -60,6 +62,7 @@
       emptyListMessage.classList.add('hidden');
     }
   }
+  toggleEmptyMessage()
 
   function removingTaskOnButton(item) {
     const removeButton = item.querySelector('.todo-list-remove');
